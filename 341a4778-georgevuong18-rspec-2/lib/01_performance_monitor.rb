@@ -1,6 +1,6 @@
-def measure(n = 1)
+def measure(repeat = 1)
   start_time = Time.now
-  n.times { yield }
+  repeat.times { yield }
   end_time = Time.now
-  end_time - start_time
+  p (end_time - start_time) / repeat
 end
