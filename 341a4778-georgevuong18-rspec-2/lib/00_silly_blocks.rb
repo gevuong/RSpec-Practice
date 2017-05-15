@@ -1,8 +1,17 @@
-#result.reverse
+def reverser
+  arr = []
+  yield.split.each do |word|
+    arr << word.reverse
+  end
 
-def adder(n=1)
-   yield + n
+  arr.join(" ")
 end
 
-# default_block {}
-# adder.each { |el| el + 1 }
+def adder(n = 1)
+  yield + n
+end
+
+def repeater(n = 0)
+  yield
+  (n - 1).times { yield }
+end
