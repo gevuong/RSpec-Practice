@@ -4,6 +4,7 @@
 # factors of a given number.
 
 def factors(num)
+  (1..num).select { |int| int if num % int == 0 }
 end
 
 # ### Bubble Sort
@@ -66,10 +67,12 @@ end
 # `subwords` will accept both a string and a dictionary (an array of
 # words).
 
-def substrings(string)
-end
+# def substrings(string)
+#
+# end
 
-def subwords(word, dictionary)
+def subwords(string, dictionary)
+  dictionary.select { |str| str if string.include?(str) }
 end
 
 # ### Doubler
@@ -77,6 +80,7 @@ end
 # array with the original elements multiplied by two.
 
 def doubler(array)
+  array.map {|int| int * 2 }
 end
 
 # ### My Each
@@ -141,4 +145,5 @@ end
 # ```
 
 def concatenate(strings)
+  strings.inject { |acc, el| acc + el }
 end
