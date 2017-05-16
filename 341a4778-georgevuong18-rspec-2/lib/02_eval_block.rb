@@ -45,3 +45,10 @@
 # eval_block(1, 2, 3)
 # # => "NO BLOCK GIVEN"
 # ```
+
+def eval_block(*args)
+  yield
+  #raise "Error: No Block Given" unless args.include?(&block) #no block is given
+end
+
+eval_block { args }
