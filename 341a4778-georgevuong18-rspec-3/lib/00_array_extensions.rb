@@ -151,6 +151,20 @@ end
 
 class Array
   def my_transpose
+    new_row = []
+    new_matrix = []
+
+    (0..self.length - 1).each do |idx|
+      self.each do |sub_arr|
+        new_row << sub_arr[idx]
+        if new_row.count == self.count
+          new_matrix << new_row
+          new_row = []
+        end
+      end
+    end
+
+    new_matrix
   end
 end
 
