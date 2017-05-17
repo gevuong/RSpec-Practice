@@ -18,6 +18,19 @@
 
 class String
   def caesar(shift)
+    #map letters to numbers
+    str = ""
+    letter_to_num = {}
+    num_to_letter = {}
+    ("a".."z").each_with_index { |ch, idx| num_to_letter[idx] = ch }
+    ("a".."z").each_with_index { |ch, idx| letter_to_num[ch] = idx }
+
+    self.each_char do |ch|
+      num = (letter_to_num[ch] + shift) % 26
+      str << num_to_letter[num]
+    end
+
+    str
   end
 end
 
