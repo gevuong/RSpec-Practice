@@ -49,6 +49,18 @@ end
 
 class Hash
   def difference(other_hash)
+    new_hash = {}
+    self.each do |k, v|
+      next if other_hash.keys.include?(k)
+      new_hash[k] = v
+    end
+
+    other_hash.each do |k, v|
+      next if self.keys.include?(k)
+      new_hash[k] = v
+    end
+
+    new_hash
   end
 end
 
@@ -111,6 +123,7 @@ end
 
 class Fixnum
   def stringify(base)
+    
   end
 end
 
