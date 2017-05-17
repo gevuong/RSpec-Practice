@@ -47,7 +47,14 @@ end
 # http://stackoverflow.com/questions/827649/what-is-the-ruby-spaceship-operator
 
 class Array
+  # def initialize
+  #   @arr = []
+  # end
+
+# attempting bubble sort
   def bubble_sort!
+    return [] if :array.count == 0
+    return :array if :array.count == 1
   end
 
   def bubble_sort(&prc)
@@ -80,7 +87,7 @@ end
 # array with the original elements multiplied by two.
 
 def doubler(array)
-  array.map {|int| int * 2 }
+  array.map { |int| int * 2 }
 end
 
 # ### My Each
