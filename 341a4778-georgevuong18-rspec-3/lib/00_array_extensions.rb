@@ -5,6 +5,8 @@
 
 class Array
   def sum
+    return 0 if self == []
+    self.reduce(:+)
   end
 end
 
@@ -15,10 +17,14 @@ end
 # method, which mutates the original array.
 
 class Array
-  def square!
+  def square
+    self if self == []
+    self.map { |int| int**2 }
   end
 
-  def square
+  def square!
+    return [] if self == []
+    self.map! { |int| int**2 }
   end
 end
 
@@ -36,6 +42,9 @@ end
 
 class Array
   def my_uniq
+    hash = {}
+    self.each { |int| hash[int] = 0 }
+    hash.keys
   end
 end
 
@@ -57,6 +66,20 @@ end
 
 class Array
   def two_sum
+    idx_arr = []
+    sub_arr = []
+    combo_arr = self.combination(2).to_a
+    zero_pair = combo_arr.select { |array| array.reduce(:+) == 0 }
+
+    zero_pair.flatten.each do |el|
+      sub_arr << self.index(el)
+      if sub_arr.count == 2
+        idx_arr << sub_arr
+        sub_arr = []
+      end
+    end
+
+    idx_arr
   end
 end
 
@@ -69,6 +92,13 @@ end
 
 class Array
   def median
+    sorted_arr = self.sort
+
+    if sorted_arr.count.odd?
+      sorted_arr[sorted_arr.count / 2]
+    else
+      (sorted_arr[sorted_arr.count / 2] + sorted_arr[sorted_arr.count / 2 - 1]) / 2.0
+    end
   end
 end
 
