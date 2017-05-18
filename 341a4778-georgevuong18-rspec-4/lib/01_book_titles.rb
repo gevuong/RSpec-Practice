@@ -1,15 +1,7 @@
 class Book
-  attr_reader :title # getter method
-=begin #notes on how to modify @title with attr_accessor
-  attr_accessor :title
+  attr_reader :title # getter(reader) method
 
-  def title
-    @title = title.capitalize
-    self.title = title.capitalize
-  end
-=end
-
-  def title=(title) # setter method
+  def title=(title) # setter(writer) method
     @exceptions = %w[and in the of a an]
     @title = title.split.map.with_index do |word, idx|
       if @exceptions.include?(word) && idx != 0
@@ -18,6 +10,15 @@ class Book
         word.capitalize
       end
     end
-                  .join(" ")
+                  .join(" ") # or @title = @title.join
   end
 end
+
+=begin #notes on how to modify @title with attr_accessor
+  attr_accessor :title
+
+  def title
+    @title = title.capitalize
+    self.title = title.capitalize
+  end
+=end
