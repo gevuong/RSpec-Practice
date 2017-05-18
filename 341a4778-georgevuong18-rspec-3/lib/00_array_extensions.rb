@@ -166,6 +166,8 @@ class Array
 
     new_matrix
   end
+
+
 end
 
 # Bonus: Refactor your `Array#my_transpose` method to work with any rectangular

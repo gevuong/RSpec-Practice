@@ -123,7 +123,31 @@ end
 
 class Fixnum
   def stringify(base)
-    
+    str = ""
+
+    if base == 10
+      return self.to_s
+
+    elsif base == 2
+      (0..7).each do |el|
+        break if self / (base ** el) == 0
+        str << ((self / 2**el) % 2).to_s
+      end
+      return str.reverse
+
+    elsif base == 16
+      hexadecimal = {0 => "0", 1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9",
+      10 => "a", 11 => "b", 12 => "c", 13 => "d", 14 => "e", 15 => "f"}
+
+      if self > 15
+        quotient = self / base
+        remainder = self % base
+        return hexadecimal[quotient] + hexadecimal[remainder]
+      else
+        return hexadecimal[self]
+      end
+      
+    end
   end
 end
 
