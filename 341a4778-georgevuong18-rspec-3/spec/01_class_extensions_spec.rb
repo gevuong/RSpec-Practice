@@ -60,7 +60,7 @@ describe Fixnum do
     end
 
     it "stringifies numbers in base 2" do
-      #expect(5.stringify(2)).to eq("101")
+      expect(5.stringify(2)).to eq("101")
       expect(10.stringify(2)).to eq("1010")
       expect(42.stringify(2)).to eq("101010")
     end

@@ -71,6 +71,8 @@ class Array
     combo_arr = self.combination(2).to_a
     zero_pair = combo_arr.select { |array| array.reduce(:+) == 0 }
 
+    # arr = ['x', 'o', 'x', '.', '.', 'o', 'x']
+    # arr.each_index.select{|i| arr[i] == 'x'} # => [0, 2, 6]
     zero_pair.flatten.each do |el|
       sub_arr << self.index(el)
       if sub_arr.count == 2
@@ -92,6 +94,7 @@ end
 
 class Array
   def median
+    return nil if self == []
     sorted_arr = self.sort
 
     if sorted_arr.count.odd?
