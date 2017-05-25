@@ -34,7 +34,5 @@ class Timer
 
       hours + ":" + minutes + ":" + sec
     end
-
-    #str
   end
 end

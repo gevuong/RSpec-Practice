@@ -1,3 +1,5 @@
+require "byebug"
+
 class Dictionary
 
   def initialize
@@ -11,6 +13,7 @@ class Dictionary
   def add(animal)
     @d[animal.keys.first] = animal.values.first if animal.class == Hash
     @d[animal] = nil if animal.class == String
+
   end
 
   def keywords

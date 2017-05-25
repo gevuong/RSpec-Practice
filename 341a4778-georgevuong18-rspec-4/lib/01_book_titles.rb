@@ -1,8 +1,15 @@
 class Book
-  attr_reader :title # getter(reader) method
+  attr_reader :title # getter method
 
-  def title=(title) # setter(writer) method
+  def initialize
     @exceptions = %w[and in the of a an]
+  end
+
+  # def title=(title)
+  #   @title = title
+  # end
+  
+  def title=(title) # setter (writer) method
     @title = title.split.map.with_index do |word, idx|
       if @exceptions.include?(word) && idx != 0
         word
