@@ -66,22 +66,18 @@ end
 
 class Array
   def two_sum
-    idx_arr = []
-    sub_arr = []
-    combo_arr = self.combination(2).to_a
-    zero_pair = combo_arr.select { |array| array.reduce(:+) == 0 }
+    zero_pairs = []
+    idx_combo = (0...self.length).to_a.combination(2).to_a
 
-    # arr = ['x', 'o', 'x', '.', '.', 'o', 'x']
-    # arr.each_index.select{|i| arr[i] == 'x'} # => [0, 2, 6]
-    zero_pair.flatten.each do |el|
-      sub_arr << self.index(el)
-      if sub_arr.count == 2
-        idx_arr << sub_arr
-        sub_arr = []
+    idx_combo.each do |idx_arr|
+      if self[idx_arr[0]] + self[idx_arr[1]] == 0
+        zero_pairs << idx_arr
+      else
+        next
       end
     end
 
-    idx_arr
+    zero_pairs
   end
 end
 
