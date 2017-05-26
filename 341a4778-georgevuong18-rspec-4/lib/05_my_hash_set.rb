@@ -29,6 +29,47 @@
 # all the items of `set1` that aren't in `set2`.
 
 class MyHashSet
+  def initialize
+    @store = {}
+  end
+
+  def minus(set2)
+    set2
+  end
+
+  def intersect(set2)
+    # p @store
+    # p set2
+  end
+
+  def union(set2)
+    p @store.merge(set2)
+    #p set2.class
+    #set2.to_set
+  end
+
+  def to_a
+    @store.keys # returns an array of keys items
+  end
+
+  def include?(el)
+    @store.has_key?(el)
+  end
+
+  def delete(el)
+    if include?(el)
+      @store.delete(el)
+      return true
+    else
+      return false
+    end
+  end
+
+  def insert(el)
+    @store[el] = true
+  end
+
+
 end
 
 # Bonus
