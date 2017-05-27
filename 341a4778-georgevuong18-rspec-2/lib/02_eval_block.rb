@@ -46,7 +46,7 @@
 # # => "NO BLOCK GIVEN"
 # ```
 
-def eval_block#(*args)
+def eval_block(*args)
   yield
   #raise "Error: No Block Given" unless args.include?(&block) #no block is given
 end

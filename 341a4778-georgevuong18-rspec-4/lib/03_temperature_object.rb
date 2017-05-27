@@ -1,10 +1,8 @@
 class Temperature
-  attr_accessor :options
+  attr_reader :options
 
   def initialize(options = {})
-    default = { f: 32, c: 0 }
-    @options = { :f => 0, :c => 0 }
-    
+    @options = options
   end
 
   def in_fahrenheit
@@ -26,9 +24,7 @@ class Temperature
   # define 'from_celsius' factory method as a class method
   def self.from_celsius(temp_c)
     options = { c: temp_c }
-
-    temp = Temperature.new(options)
-    temp.in_celsius
+    Temperature.new(options)
 
     #@options[:f] = temp_c
     #temp_c = Temperature.new #(options = {})
@@ -36,12 +32,19 @@ class Temperature
   end
 
   def self.from_fahrenheit(temp_f)
-    #@options[:f] = temp_f
-    #p @options
+    options = { f: temp_f }
+    Temperature.new(options)
   end
+end
 
-  # def []=(pos)
-  #   p @options[pos]
-  # end
+class Fahrenheit < Temperature
+  def initialize(temp_f = {})
+    @options = { f: temp_f }
+  end
+end
 
+class Celsius < Temperature
+  def initialize(temp_c)
+    @options = { c: temp_c }
+  end
 end

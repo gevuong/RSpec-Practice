@@ -53,11 +53,25 @@ class Array
 
 # attempting bubble sort
   def bubble_sort!
-    return [] if :array.count == 0
-    return :array if :array.count == 1
+    prc ||= Proc.new { |num1, num2| num2 <=> num1 }
+
+    sorted = false
+    until sorted
+      sorted = true
+
+      (self.length - 1).times do |i|
+        if prc.call(self[i], self[i + 1]) == 1
+          self[i + 1], self[i] = self[i], self[i + 1]
+          sorted = false
+        end
+      end
+    end
+
+    self.reverse
   end
 
   def bubble_sort(&prc)
+    self.dup.bubble_sort!
   end
 end
 
@@ -112,9 +126,20 @@ end
 #
 # p return_value # => [1, 2, 3]
 # ```
+#prc.call calls the object
 
 class Array
-  def my_each(&prc)
+  def my_each(&prc) # prc = Proc.new { |num| puts num }
+    idx = 0
+    while idx < self.length
+      prc.call(self[idx])
+      idx += 1
+    end
+    self
+
+    #alternative method
+    # self.length.times { |idx| prc.call(self[idx]) }
+    # self
   end
 end
 
@@ -132,13 +157,39 @@ end
 #   `my_inject`. Again, do not modify the original array.
 
 class Array
-  def my_map(&prc)
+  def my_map(&prc) # prc = Proc.new { |num| res << num }
+    res = []
+    self.my_each { |el| res << prc.call(el) }
+    res
+    #alternative method
+    # result = []
+    # self.my_each { |el| result << yield(el) }
+    # result
   end
 
-  def my_select(&prc)
+  def my_select(&prc) # the proc object stores a block that defines what the select method does? prc = Proc.new { |el| true }
+    res = []
+    self.my_each { |el| res << el if prc.call(el) == true }
+    res
+    #alternate method
+    # result = []
+    # my_each { |el| result << yield(el) }
+    # result
   end
 
-  def my_inject(&blk)
+  def my_inject(&blk) # prc = Proc.new { |sum, num| sum + num }
+    res = []
+    (0...self.length).to_a.my_each do |idx|
+      acc = self.first # want the first element to be accumulator
+      next if idx == 0
+      if idx == 1
+        res << blk.call(acc, self[idx])
+      else
+        res << blk.call(nil, self[idx])
+      end
+    end
+
+    res
   end
 end
 
