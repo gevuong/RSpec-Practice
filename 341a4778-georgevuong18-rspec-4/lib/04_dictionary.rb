@@ -44,7 +44,6 @@ class Dictionary
     str = ""
     last_key = @d.keys.sort.last
     @d = @d.sort_by { |key, _| key } # no longer a hash
-    p @d
     @d.each do |key, val|
       str << "[#{key}]" + " "
       str << "\"#{val}\""
@@ -53,5 +52,4 @@ class Dictionary
 
     str
   end
-
 end
